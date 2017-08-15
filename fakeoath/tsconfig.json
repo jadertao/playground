@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "outFile": "dist/fakeoath.js",
+    "sourceMap": true
+  },
+  "files": [
+    "fakeoath.ts"
+  ]
+}
