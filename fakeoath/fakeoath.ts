@@ -11,7 +11,12 @@ class Fakeoath {
   }
   static all() { }
   static race() { }
-
+  public static toString(): string {
+    return 'Fakeoath() { [native code] }'
+  }
+  public static valueOf(): string {
+    return 'Fakeoath() { [native code] }'
+  }
   constructor(arg: any) {
     this['[[status]]'] = 'pending'
     this['[[value]]'] = arg
@@ -29,9 +34,8 @@ class Fakeoath {
       default:
         this['[[status]]'] = 'resolved'
         this['[[value]]'] = arg
-      //throw new Error('no argument')
+      //throw new Error('no argument') 
     }
-
   }
 
   public then(onFullfilled: any, onRejected: any) {
@@ -41,5 +45,6 @@ class Fakeoath {
   }
   public catch() { }
 
+  private queue: any = { fullfilledQueue: [], rejectedQueue: [] }
 }
 
