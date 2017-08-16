@@ -27,16 +27,19 @@ class Fakeoath {
         this['[[value]]'] = arg
         break
       default:
-        throw new Error('no argument')
+        this['[[status]]'] = 'resolved'
+        this['[[value]]'] = arg
+      //throw new Error('no argument')
     }
 
   }
 
-  public then() { }
+  public then(onFullfilled: any, onRejected: any) {
+    return this['[[status]]'] === 'resolved'
+      ? new Fakeoath(onFullfilled(this['[[value]]']))
+      : new Fakeoath(onRejected(this['[[value]]']))
+  }
   public catch() { }
-  // private detect(target, type: string): boolean {
-  //   return Object.prototype.toString.call(target).toLowerCase().includes(type.toLowerCase())
-  // }
 
 }
 
