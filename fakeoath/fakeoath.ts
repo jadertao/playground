@@ -47,11 +47,11 @@ class Fakeoath {
   public then(f: any, r: any) {
     let _oath = new Fakeoath((f, r) => { })
     this.fullfilledCb = () => {
-      _oath['[[value]]'] = f()
-      _oath['[[value]]'] = 'resolved'
+      _oath['[[value]]'] = f(this['[[value]]'])
+      _oath['[[status]]'] = 'resolved'
     }
     this.rejectedCb = () => {
-      _oath['[[value]]'] = r()
+      _oath['[[value]]'] = r(this['[[value]]'])
       _oath['[[status]]'] = 'rejected'
     }
     return _oath
