@@ -2,12 +2,12 @@ import Observable from './Observable'
 import Subject from './Subject'
 declare global {
   interface Window {
-    Rx: any
+    Frx: any
   }
 }
 
-const Rx = {
+const Frx = {
   Observable,
   Subject
 }
-window.Rx = Rx
+window.Frx = Frx

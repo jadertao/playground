@@ -1,6 +1,6 @@
 module.exports = {
   devtool: 'inline-source-map',
-  entry: './src/Rx.ts',
+  entry: './src/Frx.ts',
   module: {
     rules: [
       {
@@ -14,7 +14,7 @@ module.exports = {
     extensions: [".tsx", ".ts", ".js"]
   },
   output: {
-    filename: 'Rx.js',
+    filename: 'Frx.js',
     path: __dirname + '/dist/'
   }
 };
