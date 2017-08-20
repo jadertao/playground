@@ -32,6 +32,7 @@ class Fakeoath {
 
     if (Object.prototype.toString.call(rsl).toLowerCase().slice(8, -1) === 'function') {
       this['[[value]]'] = undefined
+
       const resolve = (v) => {
         setTimeout(() => {
           this['[[status]]'] = 'resolved'
@@ -48,11 +49,17 @@ class Fakeoath {
         }, 0)
       }
       try {
-        const value = rsl(resolve, reject)
-        if (value && !this['[[value]]']) { this['[[value]]'] = value }
+        setTimeout(() => {
+          const value = rsl(resolve, reject)
+          if (value && !this['[[value]]']) {
+            this['[[value]]'] = value
+          }
+        }, 0)
+
       } catch (e) {
         this['[[status]]'] = 'rejected'
         this['[[value]]'] = e
+
         setTimeout(() => {
           throw e
         }, 0)
@@ -64,14 +71,28 @@ class Fakeoath {
 
   public then(f: any, r?: any): Fakeoath {
     const oath = new Fakeoath((resolve, reject) => { })
-    this.fullfilledCb = () => {
-      oath['[[value]]'] = f(this['[[value]]'])
-      oath['[[status]]'] = 'resolved'
+    if (f) {
+      this.fullfilledCb = () => {
+        oath['[[value]]'] = f(this['[[value]]'])
+        oath['[[status]]'] = 'resolved'
+      }
     }
-    this.rejectedCb = () => {
-      oath['[[value]]'] = r(this['[[value]]'])
-      oath['[[status]]'] = 'resolved'
+    if (r) {
+      this.rejectedCb = () => {
+        oath['[[value]]'] = r(this['[[value]]'])
+        oath['[[status]]'] = 'resolved'
+      }
     }
+    if (this['[[value]]']) {
+      if (this['[[status]]'] === 'resolved') {
+        oath['[[value]]'] = f(this['[[value]]'])
+        oath['[[status]]'] = 'resolved'
+      } else {
+        oath['[[value]]'] = r(this['[[value]]'])
+        oath['[[status]]'] = 'resolved'
+      }
+    }
+
     return oath
   }
 
