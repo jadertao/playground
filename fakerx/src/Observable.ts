@@ -11,6 +11,9 @@ class Observable {
     observable.sourceObj = node
     return observable
   }
+  public static from(array: any[]) {
+
+  }
   constructor() {
   }
   public eventName: string
