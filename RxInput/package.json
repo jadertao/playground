@@ -1,5 +1,5 @@
 {
-  "name": "fakerx",
+  "name": "RxInput",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,11 +9,13 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "rxjs": "^5.4.3"
-  },
   "devDependencies": {
-    "ts-loader": "^2.3.3",
-    "webpack-cli": "^3.2.1"
+    "ts-loader": "^5.3.3",
+    "typescript": "^3.2.2",
+    "webpack": "^4.8.3",
+    "webpack-cli": "^3.1.1"
+  },
+  "dependencies": {
+    "rxjs": "^6.3.3"
   }
 }
